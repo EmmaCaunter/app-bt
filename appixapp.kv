@@ -1,0 +1,325 @@
+#:kivy 1.9.0
+
+
+<ExitButton>
+
+<ScreenMessage>
+
+    BoxLayout:
+        id: navigation_box
+        orientation: 'vertical'
+        canvas:
+            Rectangle:
+                source: 'assets/instruction-bg.png'
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.24
+            Image:
+                source: 'assets/logo-tag.png'
+                allow_stretch: True
+                keep_ratio: True
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            id: screen_message
+            size_hint_y: 0.567
+
+            BoxLayout:
+                padding: [self.width/8, self.width/6, self.width/8, self.width/6]
+
+                Image:
+                    source: root.screen_message_image
+                    size_hint: (1, 1)
+                    allow_stretch: True
+                    keep_ratio: True
+
+        ExitButton:
+            id: exit_button
+            # button_name: "exit"
+            orientation: 'horizontal'
+            padding: [self.width/10, 0, self.width/10, self.width/15]
+            spacing: self.width/10
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_y: 0.21
+
+    Label:
+        id: version_label
+        text: "Version " + app.appix_version
+        opacity: 0.4
+        font_size: '10sp'
+        size: self.size
+        pos_hint: {'x':0.0, 'y':-0.48}
+
+
+
+
+
+<AppixBase>:
+
+    # NodeCoordinates:
+
+        # id: node_layer
+        # Button:
+
+#    Label:
+#
+#        id: rssi_label
+#        text: "RSSI: "
+#        opacity: 1
+#        index: 100
+#        font_size: '40sp'
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.2}
+
+
+
+    InstructionDemo:
+
+        id: instruction_demo
+
+    InstructionContainer:
+
+        id: instruction_container
+
+        BoxLayout:
+            id: navigation_box
+            orientation: 'vertical'
+            canvas:
+                Rectangle:
+                    source: 'assets/instruction-bg.png'
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                size_hint_y: 0.24
+                Image:
+                    source: 'assets/logo-tag.png'
+                    allow_stretch: True
+                    keep_ratio: True
+                    size: self.size
+                    pos: self.pos
+
+#            BoxLayout:
+#                size_hint_y: 0.01
+#                Image:
+#                    source: 'assets/horizontal-line.png'
+#                    allow_stretch: False
+#                    keep_ratio: True
+#                    size: self.size
+#                    pos: self.pos
+
+            InstructionPages:
+                id: instruction_pages
+                size_hint_y: 0.567
+                on_index: root.ids.instruction_navigation.update_navigation(self.index)
+
+#            BoxLayout:
+#                size_hint_y: 0.01
+#                Image:
+#                    source: 'assets/horizontal-line.png'
+#                    allow_stretch: False
+#                    keep_ratio: True
+#                    size: self.size
+#                    pos: self.pos
+
+            InstructionNavigation:
+                id: instruction_navigation
+                orientation: 'horizontal'
+                padding: [self.width/10, 0, self.width/10, self.width/15]
+                spacing: self.width/10
+                size_hint_y: 0.21
+
+#                NavigationButton:
+#                    id: left_navigation_button
+#                    source: 'assets/button-back.png'
+#                    color: [0, 0, 0, 0]
+#                    disabled: True
+#                    size_hint: 0.7, 0.7
+#                    on_release: root.ids.instruction_pages.navigate('prev')
+##
+##                NavigationButton:
+##                    id: middle_navigation_button
+##                    source: 'assets/button-test.png'
+##                    color: [0, 0, 0, 0]
+##                    disabled: True
+##                    size_hint: 0.7, 0.7
+##
+#                NavigationButton:
+#                    id: right_navigation_button
+#                    source: 'assets/button-enter.png'
+#                    size_hint: 0.7, 0.7
+#                    on_release: root.ids.instruction_pages.navigate('next')
+#
+#
+#
+#                NavigationButton:
+#                    id: instruction_button
+#                    source: 'assets/button-instructions.png'
+#                    allow_stretch: True
+#                    keep_ratio: True
+#                    pos: (self.parent.width/3.6, -self.parent.height/8)
+#                    size_hint: 1, 1
+#                    on_release: root.ids.instruction_pages.navigate('next')
+
+
+
+        Label:
+
+            id: version_label
+            text: "Version " + app.appix_version
+            opacity: 0.4
+            font_size: '10sp'
+            size: self.size
+            pos_hint: {'x':0.0, 'y':-0.48}
+
+
+
+
+
+
+    #### android testing only: will crash ios
+
+#    Label:
+#        text: "self.ble_scanner: " + str(app.ble_scanner)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.25}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
+#
+#    Label:
+#        text: "btManager: " + str(app.ble_scanner.btManager)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.1}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
+#
+#    Label:
+#        text: "btAdapter: " + str(app.ble_scanner.btAdapter)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':-0.1}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
+#
+#    Label:
+#        text: "mybtLeScan: "  + str(app.ble_scanner.mybtLeScan)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':-0.2}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
+#
+#    Label:
+#        text: "btAdapter.isEnabled(): " + str(app.ble_scanner.isBluetoothEnabled)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':-0.3}
+
+
+
+
+
+    #### ios testing only: will crash android
+#
+#    Label:
+#        text: "Record Mode: " + str(app.core_location.ios_mode)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.32}
+#
+#    Label:
+#        text: "Midi Note Number: " + str(app.core_bluetooth.midi_note_number)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.29}
+#
+#    Label:
+#        text: "Current Octave: " + str(app.core_location.current_octave)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.26}
+#
+#    Label:
+#        text: "Beacon Count: " + str(len(app.core_location.ios_master_beacon_list))
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':0.2}
+#
+#    Label:
+#        text: "Midi Checksum: " + str(app.core_location.midi_checksum)
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':0.17}
+#
+#    Label:
+#        text: "Beacon Repeat Count: " + str(app.core_location.beacon_repeat_count)
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':0.13}
+#
+#    Label:
+#        text: "self.ios_major_minor[0]: " + str(app.core_location.ios_major_minor[0])
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':0.08}
+#
+#    Label:
+#        text: "self.ios_major_minor[1]: " + str(app.core_location.ios_major_minor[1])
+#        pos_hint: {'x':0.2, 'y':0.05}
+#
+#    Label:
+#        text: "self.ios_major_minor[2]: " + str(app.core_location.ios_major_minor[2])
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':0.02}
+#
+#    Label:
+#        text: "self.ios_major_minor[3]: " + str(app.core_location.ios_major_minor[3])
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':-0.01}
+#
+##    Label:
+##        text: "ios_filter_stop_record_flag: " + str(app.core_location.ios_filter_stop_record_flag)
+##        size: self.size
+##        pos_hint: {'x':0.2, 'y':0.01}
+##
+##    Label:
+##        text: "ios_filter_start_record_flag: " + str(app.core_location.ios_filter_start_record_flag)
+##        size: self.size
+##        pos_hint: {'x':0.2, 'y':-0.02}
+#
+#    Label:
+#        text: "filtering_started_flag: " + str(app.core_location.filtering_started_flag)
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':-0.11}
+##    Label:
+##        text: "ios_beacon_stop_record_flag: " + str(app.core_location.ios_beacon_stop_record_flag)
+##        size: self.size
+##        pos_hint: {'x':0.2, 'y':-0.08}
+##
+##    Label:
+##        text: "ios_beacon_start_record_flag: " + str(app.core_location.ios_beacon_start_record_flag)
+##        size: self.size
+##        pos_hint: {'x':0.2, 'y':-0.11}
+#
+#    Label:
+#        text: "recording_started_flag: " + str(app.core_location.recording_started_flag)
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':-0.14}
+#
+#    Label:
+#        text: "show_started_flag: " + str(app.core_location.show_started_flag)
+#        size: self.size
+#        pos_hint: {'x':0.2, 'y':-0.17}
+#
+#
+#    Label:
+#        text: "Latest UUID: " + str(app.core_bluetooth.latest_uuid)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':0.37}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
+#
+#    Label:
+#        text: "Filter List Length: " + str(len(app.core_location.ios_filtered_list))
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':-0.28}
+#
+#    Label:
+#        text: "Filter List: " + str(app.core_location.ios_filtered_list)
+#        size: self.size
+#        pos_hint: {'x':0.0, 'y':-0.33}
+#        text_size: self.width, None
+#        height: self.texture_size[1]
